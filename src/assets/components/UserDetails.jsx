@@ -12,7 +12,6 @@ function UserDetails() {
   try {
     let data = await axios('/products/'+needid)
     setVal(data.data)
-    console.log(data.data)
   } catch (error) {
     console.log(error)
   }

@@ -16,6 +16,7 @@ function Nav() {
     </a>
     <div className='flex items-start flex-col'>
       <h1 className="text-2xl font-semibold">category</h1>
+      <Link className='bg-blue-400 rounded-lg my-2 px-2' to='/'>All items</Link>
 
     {uniqueCategory.map((item, index)=>{
       return(
