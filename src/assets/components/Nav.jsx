@@ -6,6 +6,11 @@ function Nav() {
  const [val] = useContext(userContext);
  const getCategory = val.reduce((acc, current)=> [...acc, current.category],[]);
  const uniqueCategory = [...new Set(getCategory)];
+
+ const randomColor = ()=>{
+  return `rgba(${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)},0.8)`
+ }
+ console.log(randomColor())
   return (
     <nav className="h-screen flex flex-col items-center p-2   bg-zinc-100 w-[15%]">
     <a
@@ -23,8 +28,8 @@ function Nav() {
         <Link to={`/category/${item}`} key={index}
         className="">
         <div className="text-md flex gap-2  font-semibold">
-          <div className="w-3 inline-block mt-[7px] mr-2 h-3 rounded-full bg-orange-500 "></div>
-          <div>{item}</div>
+          <div style={{backgroundColor : randomColor()}} className="w-3 inline-block mt-[7px] mr-2 h-3 rounded-full "></div>
+          <div >{item}</div>
         </div>
       </Link>
       )
