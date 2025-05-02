@@ -5,29 +5,33 @@ import axios from '../utils/Axios'
 import Loading from './Loading'
 
 function UserDetails() {
+  const[val, setVal] = useContext(userContext)
   const req = useParams()
   const needid = req.id
- const [val, setVal] = useState('')
- let getData = async ()=>{
-  try {
-    let data = await axios('/products/'+needid)
-    setVal(data.data)
-  } catch (error) {
-    console.log(error)
-  }
- }
+ let [value, setvalue] = useState(null)
+//  let getData = async ()=>{
+//   try {
+//     let data = await axios('/products/'+needid)
+//     setVal(data.data)
+//   } catch (error) {
+//     console.log(error)
+//   }
+//  }
  useEffect(()=>{
-  getData()
- },[])
-  return ( val? 
+  if (!value){
+  setvalue(val.filter((p)=> p.id == needid)[0])
+  }
+},[])
+
+  return ( value? 
 
     <div className='flex h-screen w-[80%] py-[10%] gap-5 m-auto'>
-      <img className='h-[80%] w-[40%] object-contain bg-no-repeat' src={val.image} alt="" />
+      <img className='h-[80%] w-[40%] object-contain bg-no-repeat' src={value.image} alt="" />
       <div className='mt-10 flex flex-col gap-2 w-[70%]'>
-        <h1 className='text-2xl font-bold'>{val.title}</h1>
-        <p className='text-zinc-500 text-sm'>{val.category}</p>
-        <p className='text-red-500 font-bold'>${val.price}</p>
-        <p className='text-xs w-[70%] '>{val.description}</p>
+        <h1 className='text-2xl font-bold'>{value.title}</h1>
+        <p className='text-zinc-500 text-sm'>{value.category}</p>
+        <p className='text-red-500 font-bold'>${value.price}</p>
+        <p className='text-xs w-[70%] '>{value.description}</p>
         <div className='flex gap-2 mt-5'>
 
         <Link className='px-2 bg-blue-500 w-18 text-center text-white font-bold rounded-md'>Edit</Link>
