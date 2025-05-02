@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { userContext } from '../utils/Context'
 
 function Nav() {
@@ -10,7 +10,6 @@ function Nav() {
  const randomColor = ()=>{
   return `rgba(${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)},0.8)`
  }
- console.log(randomColor())
   return (
     <nav className="h-screen flex flex-col items-center p-2   bg-zinc-100 w-[15%]">
     <a
@@ -21,7 +20,7 @@ function Nav() {
     </a>
     <div className='flex items-start flex-col'>
       <h1 className="text-2xl font-semibold">category</h1>
-      <Link className='bg-blue-400 rounded-lg my-2 px-2' to='/'>All items</Link>
+      <Link className='bg-blue-400 text-white rounded-lg my-2 px-2' to='/'>All items</Link>
 
     {uniqueCategory.map((item, index)=>{
       return(
@@ -34,6 +33,7 @@ function Nav() {
       </Link>
       )
     })}
+    <Link className='mt-3 font-semibold px-2 bg-blue-500 rounded-md text-white py-[5px] text-sm bg-' to={"/create"}>Add new product</Link>
     </div>
   </nav>
   )
